@@ -33,6 +33,8 @@ jobs:
           echo 'RewriteCond %{REQUEST_FILENAME} !-f' >> dist/.htaccess
           echo 'RewriteCond %{REQUEST_FILENAME} !-d' >> dist/.htaccess
           echo 'RewriteRule ^ index.html [QSA,L]' >> dist/.htaccess
+          mv dist/.htaccess .  # Move the file to root
+
       - name: Deploy to Build Branch
         run: |
           git config --global user.name "szorawar2"
