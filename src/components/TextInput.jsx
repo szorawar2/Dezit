@@ -57,7 +57,6 @@ function TextInput() {
             headers: { "Content-Type": "multipart/form-data" }, // Important for file upload
           });
 
-          setDriveID(result.data.file_driveId);
           driveFileId = result.data.file_driveId;
 
           try {
@@ -105,7 +104,7 @@ function TextInput() {
                 fileId: "",
               },
             },
-          ]); // Add message and files
+          ]);
         } catch (error) {
           console.error(error);
         }
