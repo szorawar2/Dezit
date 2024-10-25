@@ -42,7 +42,7 @@ function Login() {
 
   return (
     <div className={styles.loginScreen}>
-      {/* <p style={{ color: "black" }}>test</p> */}
+      <p style={{ color: "black" }}>test</p>
       <div className={styles.loginContainer}>
         <h1>Login</h1>
         <div className={styles.loginForm}>
