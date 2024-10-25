@@ -26,6 +26,13 @@ jobs:
         run: |
           git checkout develop
           npm run build
+      - name: Create .htaccess file
+        run: |
+          echo 'Options -MultiViews' > dist/.htaccess
+          echo 'RewriteEngine On' >> dist/.htaccess
+          echo 'RewriteCond %{REQUEST_FILENAME} !-f' >> dist/.htaccess
+          echo 'RewriteCond %{REQUEST_FILENAME} !-d' >> dist/.htaccess
+          echo 'RewriteRule ^ index.html [QSA,L]' >> dist/.htaccess
       - name: Deploy to Build Branch
         run: |
           git config --global user.name "szorawar2"
@@ -34,6 +41,6 @@ jobs:
           git checkout -b build  # Create or switch to the build branch
           git rm -rf .  # Clean up old files
           cp -r dist/* .  # Copy new build files
-          git add assets/ *.html *.ico
+          git add assets/ *.html *.ico *.htaccess
           git commit -m "Deploy build from develop"
           git push --force origin build
