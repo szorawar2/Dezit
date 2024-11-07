@@ -10,8 +10,8 @@ const ContextProvider = (props) => {
   const [login, setLogin] = useState(true);
   const [token, setToken] = useState("");
 
-  const api = "https://dezit-api.online/";
-  // const api = "http://localhost:5000/";
+  //const api = "https://dezit-api.online/";
+  const api = "http://localhost:5000/";
 
   const contextValue = {
     note,

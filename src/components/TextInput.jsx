@@ -20,7 +20,7 @@ function TextInput() {
 
   const fileInputRef = useRef(null);
 
-  let driveFileId = "";
+  let s3FileId = "";
 
   const handleFileInput = (e) => {
     const uploadedFile = e.target.files[0]; //Target data
@@ -57,14 +57,14 @@ function TextInput() {
             headers: { "Content-Type": "multipart/form-data" }, // Important for file upload
           });
 
-          driveFileId = result.data.file_driveId;
+          s3FileId = result.data.s3FileId;
 
           try {
             const result = await axios.post(`${api}updatemessages`, {
               id: currentUser,
               message_text: note,
               file_text: currentFile.fileName,
-              file_driveId: driveFileId,
+              file_fileId: s3FileId,
             });
 
             setMessages([
@@ -73,7 +73,7 @@ function TextInput() {
                 text: note,
                 fileItem: {
                   fileName: currentFile.fileName,
-                  fileId: driveFileId,
+                  fileId: s3FileId,
                 },
               },
             ]); // Add message and files

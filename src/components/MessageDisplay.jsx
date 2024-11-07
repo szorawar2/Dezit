@@ -15,16 +15,16 @@ function MessageDisplay() {
     scrollToBottom();
   }, [messages]);
 
-  const handleDownload = async (fileId, fileName) => {
+  const handleDownload = async (currentUserId, fileId, fileName) => {
     try {
       const response = await axios.get(`${api}load_file`, {
         params: {
+          userId: currentUserId,
           fileId: fileId,
         },
         responseType: "blob", // Ensures binary data is handled correctly
       });
 
-      // console.log(api);
       const fileURL = URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement("a");
       link.href = fileURL;
@@ -50,6 +50,7 @@ function MessageDisplay() {
                   className={styles.downloadLabel}
                   onClick={() =>
                     handleDownload(
+                      currentUser,
                       messageObj.fileItem.fileId,
                       messageObj.fileItem.fileName
                     )
