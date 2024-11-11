@@ -14,7 +14,8 @@ function TextInput() {
     setMessages,
     currentFile,
     setCurrentFile,
-    currentUser,
+    currentUID,
+    currentUName,
     api,
   } = useContext(Context);
 
@@ -42,7 +43,8 @@ function TextInput() {
       if (currentFile.fileName) {
         try {
           await axios.post(`${api}upload_id`, {
-            userID: currentUser,
+            userID: currentUID,
+            userName: currentUName,
             message_index: messages.length,
           });
         } catch (error) {
@@ -61,7 +63,8 @@ function TextInput() {
 
           try {
             const result = await axios.post(`${api}updatemessages`, {
-              id: currentUser,
+              id: currentUID,
+              userName: currentUName,
               message_text: note,
               file_text: currentFile.fileName,
               file_fileId: s3FileId,
@@ -89,7 +92,8 @@ function TextInput() {
       if (note && !currentFile.fileName) {
         try {
           const result = await axios.post(`${api}updatemessages`, {
-            id: currentUser,
+            id: currentUID,
+            userName: currentUName,
             message_text: note,
             file_text: "",
             file_driveId: "",

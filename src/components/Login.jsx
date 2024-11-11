@@ -6,60 +6,70 @@ import { Context } from "../Context";
 import styles from "../styles/Login.module.css";
 
 function Login() {
-  const { setToken, setCurrentUser, setMessages, setLogin, api } =
-    useContext(Context);
+  const {
+    setToken,
+    setCurrentUID,
+    setCurrentUName,
+    setMessages,
+    setLogin,
+    api,
+  } = useContext(Context);
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [err, setErr] = useState(0);
-  const [status, setStatus] = useState("");
+  const [username, setUsername] = useState(""); // State for username input
+  const [password, setPassword] = useState(""); // State for password input
+  const [err, setErr] = useState(0); // Error state for login attempts
+  const [status, setStatus] = useState(""); // Status message for error or success
 
   const navigate = useNavigate();
 
+  // Handle login form submission
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${api}login`, {
+      const login_response = await axios.post(`${api}login`, {
         username,
         password,
       });
-      //
-      setMessages(response.data.messagesData);
-      setErr(response.data.error);
-      setStatus(response.data.status);
 
-      if (response.data.token) {
-        setToken(response.data.token);
-        setCurrentUser(response.data.id);
-        localStorage.setItem("token", response.data.token); // Store token
-        navigate("/messages");
+      setToken(login_response.data.token);
+      setErr(login_response.data.error); // Set error state from server response
+      setStatus(login_response.data.status); // Set status message from server response
+
+      // setMessages(response.data.messagesData); // Set messages from server response
+
+      if (login_response.data.token) {
+        // If login is successful, save the token and user info
+        // setToken(login_response.data.token);
+        setCurrentUID(login_response.data.id);
+        setCurrentUName(username); //Set username as global context
+        localStorage.setItem("token", login_response.data.token); // Store token in localStorage
+        navigate("/messages"); // Navigate to messages page
       }
-      //
     } catch (error) {
-      console.log("Login failed");
+      console.log(error);
+      console.log("Login failed"); // Log error if login fails
     }
   };
 
   return (
     <div className={styles.loginScreen}>
-      {/* <p style={{ color: "black" }}>test</p> */}
       <div className={styles.loginContainer}>
         <h1>Login</h1>
         <div className={styles.loginForm}>
-          <div>{err ? <p className={styles.error}>{status}</p> : <></>}</div>
+          <div>{err ? <p className={styles.error}>{status}</p> : null}</div>
           <form onSubmit={handleLogin}>
             <div className={styles.inputContainer}>
               <input
                 type="text"
                 placeholder="Username"
                 value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={(e) => setUsername(e.target.value)} // Update username state
               />
               <input
                 type="password"
                 placeholder="Password"
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) => setPassword(e.target.value)} // Update password state
               />
             </div>
             <div className={styles.buttonContainer}>
@@ -69,12 +79,11 @@ function Login() {
               <button
                 className={styles.setSignup}
                 onClick={() => {
-                  setLogin(false);
+                  setLogin(false); // Set login state to false to navigate to signup
                   navigate("/signup");
                 }}
                 type="button"
               >
-                {" "}
                 Signup instead?
               </button>
             </div>

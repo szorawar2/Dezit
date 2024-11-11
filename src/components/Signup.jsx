@@ -6,7 +6,8 @@ import { Context } from "../Context";
 import styles from "../styles/Login.module.css";
 
 function Signup() {
-  const { setToken, setCurrentUser, setLogin, api } = useContext(Context);
+  const { setToken, setCurrentUID, setCurrentUName, setLogin, api } =
+    useContext(Context);
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -26,11 +27,11 @@ function Signup() {
       setStatus(response.data.message);
       if (response.data.token) {
         setToken(response.data.token);
-        setCurrentUser(response.data.id);
+        setCurrentUID(response.data.id);
+        setCurrentUName(username); //Set username as global context
         localStorage.setItem("token", response.data.token); // Store token
         navigate("/messages");
       }
-      setCurrentUser(response.data.id);
     } catch (error) {
       console.log(error);
     }

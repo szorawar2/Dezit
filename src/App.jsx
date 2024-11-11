@@ -7,56 +7,39 @@ import {
   useNavigate,
 } from "react-router-dom";
 
+//Styles
 import styles from "./styles/App.module.css";
+
+//Components
 import Navbar from "./components/Navbar";
 import TextInput from "./components/TextInput";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import MessageDisplay from "./components/MessageDisplay";
 import ProtectedRoute from "./components/ProtectedRoute";
+
+//Global context
 import { Context } from "./Context";
 
 function App() {
   const { setToken } = useContext(Context);
   const navigate = useNavigate();
 
-  // const [isLoading, setIsLoading] = useState(false); // To show a loading state
-
-  // Check if token exists when the app loads
-  // useEffect(() => {
-  //   const checkToken = async () => {
-  //     try {
-  //       const response = await axios.get("http://localhost:5000/check-token", {
-  //         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-  //       });
-  //       setToken(response.data.token); // If valid token is returned, set it
-  //     } catch (error) {
-  //       setToken(null); // If no token or invalid, ensure token is null
-  //     } finally {
-  //       setIsLoading(false); // Loading state ends
-  //     }
-  //   };
-
-  //   checkToken();
-  // }, []);
-
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
-
   useEffect(() => {
+    // Clear token when navigating to login page
     if (location.pathname === "/login") {
-      setToken(null); // Clear token on back to login
+      setToken(null);
     }
   }, [location]);
 
   useEffect(() => {
+    // Check localStorage for a token and set it if available
     const storedToken = localStorage.getItem("token");
     if (storedToken) {
-      setToken(storedToken); // Set token if found in localStorage
-      // console.log("stored token:", storedToken);
+      setToken(storedToken);
     } else {
-      navigate("/login"); // Redirect to login if no token
+      // Redirect to login if no token found
+      navigate("/login");
     }
   }, [setToken, navigate]);
 
@@ -69,6 +52,7 @@ function App() {
         <Route
           path="/messages"
           element={
+            // ProtectedRoute ensures only authorized users can access messages
             <ProtectedRoute>
               <>
                 <Navbar />

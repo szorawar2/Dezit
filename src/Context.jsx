@@ -6,12 +6,13 @@ const ContextProvider = (props) => {
   const [note, setNote] = useState("");
   const [messages, setMessages] = useState([]); // Store messages and files
   const [currentFile, setCurrentFile] = useState({ fileName: "" }); // Store files before sending
-  const [currentUser, setCurrentUser] = useState(0); //sets currently logged in user
+  const [currentUID, setCurrentUID] = useState(0); //sets currently logged in user ID
+  const [currentUName, setCurrentUName] = useState("");
   const [login, setLogin] = useState(true);
   const [token, setToken] = useState("");
 
-  const api = "https://dezit-api.online/";
-  //const api = "http://localhost:5000/";
+  //const api = "https://dezit-api.online/";
+  const api = "http://localhost:5000/";
 
   const contextValue = {
     note,
@@ -22,8 +23,10 @@ const ContextProvider = (props) => {
     setMessages,
     currentFile,
     setCurrentFile,
-    currentUser,
-    setCurrentUser,
+    currentUID,
+    setCurrentUID,
+    currentUName,
+    setCurrentUName,
     login,
     setLogin,
     api,
