@@ -64,7 +64,7 @@ function Signup() {
                 className={styles.setSignup}
                 onClick={() => {
                   setLogin(true);
-                  setTimeout(() => navigate("/signup"), 10);
+                  setTimeout(() => navigate("/login"), 10);
                 }}
                 type="button"
               >
