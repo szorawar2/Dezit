@@ -25,6 +25,7 @@ function Login() {
 
   useEffect(() => {
     if (!login) {
+      setTimeout(500);
       navigate("/signup");
     }
   }, [login, navigate]);
