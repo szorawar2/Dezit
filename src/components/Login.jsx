@@ -1,5 +1,5 @@
 // src/Login.jsx
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../Context";
@@ -11,6 +11,7 @@ function Login() {
     setCurrentUID,
     setCurrentUName,
     setMessages,
+    login,
     setLogin,
     api,
   } = useContext(Context);
@@ -21,6 +22,12 @@ function Login() {
   const [status, setStatus] = useState(""); // Status message for error or success
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!login) {
+      navigate("/signup");
+    }
+  }, [login, navigate]);
 
   // Handle login form submission
   const handleLogin = async (e) => {
@@ -80,7 +87,7 @@ function Login() {
                 className={styles.setSignup}
                 onClick={() => {
                   setLogin(false); // Set login state to false to navigate to signup
-                  setTimeout(() => navigate("/signup"), 10);
+                  //setTimeout(() => navigate("/signup"), 10);
                 }}
                 type="button"
               >

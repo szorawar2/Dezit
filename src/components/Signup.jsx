@@ -1,12 +1,12 @@
 // src/Login.jsx
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../Context";
 import styles from "../styles/Login.module.css";
 
 function Signup() {
-  const { setToken, setCurrentUID, setCurrentUName, setLogin, api } =
+  const { setToken, setCurrentUID, setCurrentUName, login, setLogin, api } =
     useContext(Context);
 
   const [username, setUsername] = useState("");
@@ -15,6 +15,12 @@ function Signup() {
   const [status, setStatus] = useState("");
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (login) {
+      navigate("/login");
+    }
+  }, [login, navigate]);
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -64,7 +70,7 @@ function Signup() {
                 className={styles.setSignup}
                 onClick={() => {
                   setLogin(true);
-                  setTimeout(() => navigate("/login"), 10);
+                  //setTimeout(() => navigate("/login"), 10);
                 }}
                 type="button"
               >
