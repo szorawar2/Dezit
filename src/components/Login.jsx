@@ -80,7 +80,7 @@ function Login() {
                 className={styles.setSignup}
                 onClick={() => {
                   setLogin(false); // Set login state to false to navigate to signup
-                  navigate("/signup");
+                  setTimeout(() => navigate("/signup"), 10);
                 }}
                 type="button"
               >

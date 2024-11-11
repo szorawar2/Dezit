@@ -49,7 +49,7 @@ function MessageDisplay() {
     try {
       const response = await axios.get(`${api}load_file`, {
         params: {
-          userId: currentUserId,
+          userName: currentUName,
           fileId: fileId,
         },
         responseType: "blob", // Ensures binary data is handled correctly
@@ -94,6 +94,9 @@ function MessageDisplay() {
               <div ref={messagesEndRef} />
             </div>
           ))}
+          <div className={styles.blank}>
+            <p style={{ color: "var(--col3)" }}>lol</p>
+          </div>
         </div>
       )}
     </div>
