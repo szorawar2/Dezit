@@ -67,7 +67,7 @@ function Signup() {
             </div>
             <div className={styles.buttonContainer}>
               <button type="submit">Signup</button>
-              <button
+              {/* <button
                 className={styles.setSignup}
                 onMouseUp={() => {
                   setLogin(true);
@@ -75,9 +75,23 @@ function Signup() {
                 }}
                 type="button"
               >
-                {" "}
                 Login instead?
-              </button>
+              </button> */}
+              <div className={styles.loginAndSignup}>
+                <button
+                  className={styles.setSignup}
+                  onMouseUp={() => {
+                    setLogin(true); // Set login state to false to navigate to signup
+                    //setTimeout(() => navigate("/signup"), 10);
+                  }}
+                  type="button"
+                >
+                  Login instead?
+                </button>
+                <button className={styles.setSignup} type="button">
+                  ~
+                </button>
+              </div>
             </div>
           </form>
         </div>

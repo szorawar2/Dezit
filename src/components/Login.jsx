@@ -62,7 +62,7 @@ function Login() {
   return (
     <div className={styles.loginScreen}>
       <div className={styles.loginContainer}>
-        <h1>Login (test)</h1>
+        <h1>Login</h1>
         <div className={styles.loginForm}>
           <div>{err ? <p className={styles.error}>{status}</p> : null}</div>
           <form onSubmit={handleLogin}>
@@ -84,16 +84,21 @@ function Login() {
               <button className={styles.loginButton} type="submit">
                 Login
               </button>
-              <button
-                className={styles.setSignup}
-                onMouseUp={() => {
-                  setLogin(false); // Set login state to false to navigate to signup
-                  //setTimeout(() => navigate("/signup"), 10);
-                }}
-                type="button"
-              >
-                Signup instead?
-              </button>
+              <div className={styles.loginAndSignup}>
+                <button className={styles.setSignup} type="button">
+                  ~
+                </button>
+                <button
+                  className={styles.setSignup}
+                  onMouseUp={() => {
+                    setLogin(false); // Set login state to false to navigate to signup
+                    //setTimeout(() => navigate("/signup"), 10);
+                  }}
+                  type="button"
+                >
+                  Signup instead?
+                </button>
+              </div>
             </div>
           </form>
         </div>

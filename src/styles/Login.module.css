@@ -93,6 +93,12 @@
   transition: background 0.3s, color 0.3s;
 }
 
+.loginAndSignup {
+  display: flex;
+  gap: 15px;
+  width: 60%;
+}
+
 .loginForm button:hover {
   background-color: var(--col2);
   color: white;
