@@ -72,28 +72,13 @@ function Signup() {
             </div>
             <div className={styles.buttonContainer}>
               <button type="submit">Signup</button>
-              {/* <button
+              <button
                 className={styles.setSignup}
-                onMouseUp={() => {
-                  setLogin(true);
-                  //setTimeout(() => navigate("/login"), 10);
-                }}
+                onClick={handlePageChange_login}
                 type="button"
               >
                 Login instead?
-              </button> */}
-              <div className={styles.loginAndSignup}>
-                <button
-                  className={styles.setSignup}
-                  onClick={handlePageChange_login}
-                  type="button"
-                >
-                  Login instead?
-                </button>
-                <button className={styles.setSignup} type="button">
-                  ~
-                </button>
-              </div>
+              </button>
             </div>
           </form>
         </div>

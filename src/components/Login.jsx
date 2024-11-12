@@ -89,18 +89,13 @@ function Login() {
               <button className={styles.loginButton} type="submit">
                 Login
               </button>
-              <div className={styles.loginAndSignup}>
-                <button className={styles.setSignup} type="button">
-                  ~
-                </button>
-                <button
-                  className={styles.setSignup}
-                  onClick={handlePageChange_signup}
-                  type="button"
-                >
-                  Signup instead?
-                </button>
-              </div>
+              <button
+                className={styles.setSignup}
+                onClick={handlePageChange_signup}
+                type="button"
+              >
+                Signup instead?
+              </button>
             </div>
           </form>
         </div>
