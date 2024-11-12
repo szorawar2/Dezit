@@ -23,7 +23,7 @@ function Signup() {
   //   }
   // }, [login, navigate]);
 
-  const handlePageChange = async () => {
+  const handlePageChange_login = async () => {
     setTimeout(500);
     navigate("/login");
   };
@@ -85,7 +85,7 @@ function Signup() {
               <div className={styles.loginAndSignup}>
                 <button
                   className={styles.setSignup}
-                  onClick={handlePageChange}
+                  onClick={handlePageChange_login}
                   type="button"
                 >
                   Login instead?
