@@ -69,7 +69,7 @@ function Signup() {
               <button type="submit">Signup</button>
               <button
                 className={styles.setSignup}
-                onClick={() => {
+                onMouseUp={() => {
                   setLogin(true);
                   //setTimeout(() => navigate("/login"), 10);
                 }}

@@ -86,7 +86,7 @@ function Login() {
               </button>
               <button
                 className={styles.setSignup}
-                onClick={() => {
+                onMouseUp={() => {
                   setLogin(false); // Set login state to false to navigate to signup
                   //setTimeout(() => navigate("/signup"), 10);
                 }}
