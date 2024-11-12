@@ -23,12 +23,17 @@ function Login() {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!login) {
-      setTimeout(500);
-      navigate("/signup");
-    }
-  }, [login, navigate]);
+  // useEffect(() => {
+  //   if (!login) {
+  //     setTimeout(500);
+  //     navigate("/signup");
+  //   }
+  // }, [login, navigate]);
+
+  const handlePageChange = async () => {
+    setTimeout(500);
+    navigate("/signup");
+  };
 
   // Handle login form submission
   const handleLogin = async (e) => {
@@ -90,10 +95,7 @@ function Login() {
                 </button>
                 <button
                   className={styles.setSignup}
-                  onMouseUp={() => {
-                    setLogin(false); // Set login state to false to navigate to signup
-                    //setTimeout(() => navigate("/signup"), 10);
-                  }}
+                  onClick={handlePageChange}
                   type="button"
                 >
                   Signup instead?
