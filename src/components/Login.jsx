@@ -62,7 +62,7 @@ function Login() {
   return (
     <div className={styles.loginScreen}>
       <div className={styles.loginContainer}>
-        <h1>Login</h1>
+        <h1>Login (test)</h1>
         <div className={styles.loginForm}>
           <div>{err ? <p className={styles.error}>{status}</p> : null}</div>
           <form onSubmit={handleLogin}>
