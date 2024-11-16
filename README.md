@@ -1,4 +1,4 @@
-dezit.site
+[Dezit](https://dezit.site/)
 Chat, and share data with yourself over multiple devices
 
 This is the front-end repo, back-end @ https://github.com/szorawar2/dezit-api
