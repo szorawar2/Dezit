@@ -32,16 +32,16 @@ function App() {
     }
   }, [location]);
 
-  useEffect(() => {
-    // Check localStorage for a token and set it if available
-    const storedToken = localStorage.getItem("token");
-    if (storedToken) {
-      setToken(storedToken);
-    } else {
-      // Redirect to login if no token found
-      navigate("/login");
-    }
-  }, [setToken, navigate]);
+  // useEffect(() => {
+  //   // Check localStorage for a token and set it if available
+  //   const storedToken = localStorage.getItem("token");
+  //   if (storedToken) {
+  //     setToken(storedToken);
+  //   } else {
+  //     // Redirect to login if no token found
+  //     navigate("/login");
+  //   }
+  // }, [setToken, navigate]);
 
   return (
     <div className={styles.App}>
