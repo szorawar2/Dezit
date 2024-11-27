@@ -25,12 +25,12 @@ function App() {
   const { setToken } = useContext(Context);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // Clear token when navigating to login page
-    if (location.pathname === "/login") {
-      setToken(null);
-    }
-  }, [location]);
+  // useEffect(() => {
+  //   // Clear token when navigating to login page
+  //   if (location.pathname === "/login") {
+  //     setToken(null);
+  //   }
+  // }, [location]);
 
   // useEffect(() => {
   //   // Check localStorage for a token and set it if available
