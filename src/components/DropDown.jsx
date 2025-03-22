@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 
+import DotMenu from "../../assets/dotmenu.svg";
 import styles from "../styles/DropDown.module.css";
 import { Context } from "../Context";
 
@@ -50,7 +51,7 @@ const DropDown = ({ index }) => {
   return (
     <div id={dropDownId} className={styles.dropDown}>
       <button className={styles.classButton} onClick={toggleMenu}>
-        <img src="/assets/dotmenu.svg" alt="menu" />
+        <img src={DotMenu} alt="menu" />
       </button>
 
       <div
