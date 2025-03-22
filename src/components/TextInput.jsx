@@ -17,6 +17,8 @@ function TextInput() {
     currentUID,
     currentUName,
     api,
+    refreshMessages,
+    setRefreshMessages,
   } = useContext(Context);
 
   const fileInputRef = useRef(null);
@@ -70,16 +72,17 @@ function TextInput() {
               file_fileId: s3FileId,
             });
 
-            setMessages([
-              ...messages,
-              {
-                text: note,
-                fileItem: {
-                  fileName: currentFile.fileName,
-                  fileId: s3FileId,
-                },
-              },
-            ]); // Add message and files
+            // setMessages([
+            //   ...messages,
+            //   {
+            //     text: note,
+            //     fileItem: {
+            //       fileName: currentFile.fileName,
+            //       fileId: s3FileId,
+            //     },
+            //   },
+            // ]); // Add message and files
+            setRefreshMessages(!refreshMessages); //Fetch messages again to show the latest
           } catch (error) {
             console.error(error);
           }
@@ -99,16 +102,17 @@ function TextInput() {
             file_driveId: "",
           });
 
-          setMessages([
-            ...messages,
-            {
-              text: note,
-              fileItem: {
-                fileName: "",
-                fileId: "",
-              },
-            },
-          ]);
+          // setMessages([
+          //   ...messages,
+          //   {
+          //     text: note,
+          //     fileItem: {
+          //       fileName: "",
+          //       fileId: "",
+          //     },
+          //   },
+          // ]);
+          setRefreshMessages(!refreshMessages); //Fetch messages again to show the latest
         } catch (error) {
           console.error(error);
         }

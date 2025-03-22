@@ -1,15 +1,24 @@
 import { useContext, useRef, useEffect, useState } from "react";
-import styles from "../styles/MessageDisplay.module.css";
-import { Context } from "../Context";
 import axios from "axios";
 
+import styles from "../styles/MessageDisplay.module.css";
+
+import { Context } from "../Context";
+
+import DropDown from "./DropDown";
+
 function MessageDisplay() {
-  const { messages, setMessages, currentUID, currentUName, api, token } =
-    useContext(Context);
+  const {
+    messages,
+    setMessages,
+    currentUID,
+    currentUName,
+    api,
+    token,
+    refreshMessages,
+  } = useContext(Context);
 
   const [loading, setLoading] = useState(true);
-  const [err, setErr] = useState(0); // Error state for login attempts
-  const [status, setStatus] = useState(""); // Status message for error or success
 
   const messagesEndRef = useRef(null);
   const scrollToBottom = () => {
@@ -22,10 +31,9 @@ function MessageDisplay() {
 
   useEffect(() => {
     fetchMessages();
-  }, []); // Runs only once when the page loads
+  }, [refreshMessages]);
 
   const fetchMessages = async (e) => {
-    //e.preventDefault();
     setLoading(true);
 
     try {
@@ -34,12 +42,9 @@ function MessageDisplay() {
         token: token,
       });
 
-      setErr(fetch_response.data.error);
-      setStatus(fetch_response.data.status);
       setMessages(fetch_response.data.messagesData);
     } catch (error) {
-      setErr(2);
-      setStatus("Server Error");
+      console.error(fetch_response.status);
     } finally {
       setLoading(false); // Set loading to false after fetch
     }
@@ -77,26 +82,30 @@ function MessageDisplay() {
           {messages.map((messageObj, index) => (
             <div key={index} className={styles.message}>
               {messageObj.text && <p>{messageObj.text}</p>}
-              {messageObj.fileItem.fileName && (
-                <label
-                  className={styles.downloadLabel}
-                  onClick={() =>
-                    handleDownload(
-                      currentUID,
-                      messageObj.fileItem.fileId,
-                      messageObj.fileItem.fileName
-                    )
-                  }
-                >
-                  {messageObj.fileItem.fileName}
-                </label>
-              )}
+
+              <div className={styles.options}>
+                {/* Message index is the id in Database */}
+                <DropDown index={messageObj.id} />
+
+                {messageObj.fileItem.fileName && (
+                  <label
+                    className={styles.downloadLabel}
+                    onClick={() =>
+                      handleDownload(
+                        currentUID,
+                        messageObj.fileItem.fileId,
+                        messageObj.fileItem.fileName
+                      )
+                    }
+                  >
+                    {messageObj.fileItem.fileName}
+                  </label>
+                )}
+              </div>
+
               <div ref={messagesEndRef} />
             </div>
           ))}
-          <div className={styles.blank}>
-            <p style={{ color: "var(--col3)" }}>lol</p>
-          </div>
         </div>
       )}
     </div>
