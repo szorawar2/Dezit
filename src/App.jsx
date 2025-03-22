@@ -67,4 +67,28 @@ function App() {
   );
 }
 
+//   //FOR DEVELOPMENT
+
+//   return (
+//     <div className={styles.App}>
+//       <Routes>
+//         <Route path="/" element={<Navigate to="/messages" replace />} />
+//         <Route path="/login" element={<Login />} />
+//         <Route path="/signup" element={<Signup />} />
+//         <Route
+//           path="/messages"
+//           element={
+
+//             <>
+//               <Navbar />
+//               <MessageDisplay />
+//               <TextInput />
+//             </>
+//           }
+//         />
+//       </Routes>
+//     </div>
+//   );
+// }
+
 export default App;
